@@ -4,11 +4,12 @@
         "slim/psr7": "^1.6",
         "slim/twig-view": "^3.3",
         "php-di/slim-bridge": "^3.4",
-        "previousnext/bom-weather": "dev-update-to-php8.3",
         "cmfcmf/openweathermap-php-api": "^3.3",
         "guzzlehttp/psr7": "^2.6",
         "guzzlehttp/guzzle": "^7.8",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "slim/flash": "^0.4.0",
+        "monolog/monolog": "^3.5"
     },
     "autoload": {
         "psr-4": {
@@ -19,11 +20,5 @@
         "psr-4": {
             "WeatherTest\\": "test/"
         }
-    },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:settermjd/bom-weather.git"
-        }
-    ]
+    }
 }
