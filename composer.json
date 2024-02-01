@@ -1,4 +1,9 @@
 {
+    "name": "settermjd/php-weather-app",
+    "description": "This is a small PHP web-based application that retrieves and renders the weather for a given city or town around the world.",
+    "license": [
+        "GPL-3.0-or-later"
+    ],
     "require": {
         "slim/slim": "^4.12",
         "slim/psr7": "^1.6",
