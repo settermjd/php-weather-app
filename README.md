@@ -6,6 +6,8 @@ Using the [OpenWeatherMap API](https://openweathermap.org/api), the [Slim Framew
 
 It's not the most sophisticated, but it works.
 
+If you’d like to see a step-by-step tutorial showing how to build the app, stay tuned to [the Twilio blog](https://www.twilio.com/en-us/blog/authors/author.msetter).
+
 ## Getting Started
 
 To get started with the application, make sure your have the following:
