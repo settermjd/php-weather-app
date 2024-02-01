@@ -1,14 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/styles.css" rel="stylesheet">
-    <title>Find the Weather with PHP</title>
-</head>
-<body>
-<div class="w-fit m-auto p-4">
-    <h1 class="text-4xl font-bold mb-3">Find the Weather with PHP</h1>
+{% extends "base.html.twig" %}
+
+{% block title %}Find the Weather with PHP{% endblock %}
+{% block h1 %}Find the Weather with PHP{% endblock %}
+
+{% block content %}
     {% if error is not empty  %}
         <div class="p-2 pl-4 mb-2 flex flex-row bg-red-100 text-red-900 rounded-full">
             <img src="/img/form-icons/warning-32.png"
@@ -17,34 +12,31 @@
             <span class="pt-1">{{ error|first }}</span>
         </div>
     {% endif %}
-    <form enctype="multipart/form-data"
-          method="post"
-          class="flex flex-row gap-1">
-        <input type="text"
-               name="city"
-               placeholder="What city are you in?"
-               class="{% if error is not empty  %}error{% endif %}">
-        <input type="submit"
-               name="submit"
-               value="Search"
-               class="p-2 px-6 text-center border-4 border-purple-950 bg-purple-900 rounded-md text-white hover:cursor-pointer transition ease-in-out delay-100 hover:bg-purple-800 duration-150">
-    </form>
-    <div class="mt-5 pt-5 border-t-2 border-slate-200 drop-shadow-sm">
-        <div class="flex flex-row gap-28">
-            <div class="justify-end">
-                <h2 class="text-5xl font-bold mb-3">{{ data.city }}</h2>
+    {% include 'search-form.html.twig' %}
+    <hr class="w-48 h-1 mx-auto my-4 bg-gray-200 border-0 rounded md:my-5 md:mb-5 dark:bg-gray-700">
+    <div id="weather-report"
+         class="mt-5 py-5 p-4 bg-white border-2 border-slate-200 drop-shadow-md shadow-md rounded-md">
+        <div class="flex flex-row gap-28 ml-2">
+            <div class="grow justify-end">
+                <h2 class="text-5xl font-bold mb-0 tracking-normal">
+                    <span>{{ data.weather.city.name }}</span><br>
+                    <div class="text-sm font-normal -mt-1 text-slate-400">
+                        {{ data.weather.city.country }}
+                        ({{ data.weather.city.timezone.getName() }})
+                    </div>
+                </h2>
                 <div class="flex flex-row gap-5">
-                    <div>
-                        <h2 class="text-9xl font-bold flex flex-row">
-                            <span title="{{ data.weather.temperature.getValue() }}">{{ data.weather.temperature.getValue() | round }}</span>
-                            <span id="temp-measurement" class="-ml-1 pb-3 pt-5">{{ data.weather.temperature.getUnit() }}</span>
-                        </h2>
-                        <div class="-mt-8 ml-1.5 text-xl italic text-slate-500">feels like 26<sup>&deg;</sup></div>
-                    </div>
-                    <div id="daily-min-max" class="flex flex-col justify-end justify-items-center mb-8">
-                        <div id="daily-max" class="shrink text-4xl mb-3">{{ data.weather.temperature.max }}<span class="-ml-2 italic text-slate-300 text-sm">h</span></div>
-                        <div id="daily-min" class="shrink text-4xl">{{ data.weather.temperature.min }}<span class="-ml-2 italic text-slate-300 text-sm">l</span></div>
-                    </div>
+                    <h3 class="text-9xl font-bold flex flex-row mb-2">
+                        <span title="{{ data.weather.temperature.getValue() }}">
+                            {{ data.weather.temperature.getValue() | round }}
+                        </span>
+                        <span id="temp-measurement" class="-ml-1 pb-3">
+                            {{ data.weather.temperature.getUnit() }}
+                        </span>
+                    </h3>
+                </div>
+                <div class="text-3xl ml-1 -mt-8 italic text-slate-700">
+                    {{ data.weather.weather.description }}
                 </div>
             </div>
             <div id="weather-icon" class="p-4 pt-0 min-w-fit">
@@ -57,9 +49,9 @@
             </div>
         </div>
         <div id="data-display" class="mt-2">
-            <div class="grid grid-cols-3 gap-0 m-0">
+            <div class="grid grid-cols-2 text-slate-700">
                 <div id="wind-speed"
-                     class="p-2 border-2 border-slate-200 rounded-lg bg-slate-50 m-2">
+                     class="p-2 border-2 border-slate-200 rounded-lg bg-slate-50 m-2 shadow-sm drop-shadow-sm">
                     <div class="w-full text-center text-slate-300">wind speed</div>
                     <div class="text-center text-4xl h-44 flex justify-center flex-col align-middle data-item-text"
                          style="background: center no-repeat url('/img/data-display-icons/wind-o5.png');"
@@ -72,7 +64,7 @@
                     </div>
                 </div>
                 <div id="humidity"
-                     class="p-2 border-2 border-slate-200 rounded-lg bg-slate-50 m-2">
+                     class="p-2 border-2 border-slate-200 rounded-lg bg-slate-50 m-2 shadow-sm drop-shadow-sm">
                     <div class="w-full text-center text-slate-300">humidity</div>
                     <div class="text-center text-4xl h-44 flex justify-center flex-col align-middle data-item-text"
                          style="background: center no-repeat url('/img/data-display-icons/cloud-o5.png');"
@@ -81,7 +73,7 @@
                     </div>
                 </div>
                 <div id="uv-index"
-                     class="p-2 border-2 border-slate-200 rounded-lg bg-slate-50 m-2">
+                     class="p-2 border-2 border-slate-200 rounded-lg bg-slate-50 m-2 shadow-sm drop-shadow-sm">
                     <div class="w-full text-center text-slate-300">UV index</div>
                     <div class="text-center text-4xl h-44 flex justify-center flex-col align-middle data-item-text"
                          style="background: center no-repeat url('/img/data-display-icons/sun-o5.png');"
@@ -101,9 +93,4 @@
             </div>
         </div>
     </div>
-    <footer class="border-t-2 border-slate-200 drop-shadow-sm text-center mt-5 pt-4">
-        <p class="lowercase text-slate-300">built by Matthew Setter. Powered by Twilio.</p>
-    </footer>
-</div>
-</body>
-</html>
+{% endblock %}

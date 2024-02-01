@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="bg-slate-50">
+<div class="relative z-0">
+    <img class="absolute top-2 -right-24 opacity-10 grayscale" src="/img/weather-icons/rain.png">
+</div>
+<div class="w-fit m-auto p-4 z-40">
+    <h1 class="text-4xl font-bold mb-2">{% block h1 %}{% endblock %}</h1>
+    {% block content %}{% endblock %}
+    <footer class="border-t-2 border-slate-200 drop-shadow-sm text-center mt-5 pt-4">
+        <p class="lowercase text-slate-300">built by Matthew Setter. Powered by Twilio.</p>
+    </footer>
+</div>
+<div class="sticky z-0">
+    <img class="-ml-20 opacity-10 grayscale"
+         src="/img/weather-icons/rain.png">
+</div>
+</body>
+</html>
