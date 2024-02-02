@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Sorry. We could not find that city{% endblock %}
-{% block h1 %}Find the Weather with PHP{% endblock %}
+{% block title %}}{{ title }}{% endblock %}
+{% block h1 %}{{ title }}{% endblock %}
 
 {% block content %}
-    <h2 class="text-2xl font-bold mb-3">Sorry. We could not find that city.</h2>
+    <h2 class="text-2xl font-bold mb-3">{{ message }}</h2>
     {% include 'search-form.html.twig' %}
 {% endblock %}

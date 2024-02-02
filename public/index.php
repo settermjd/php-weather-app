@@ -118,8 +118,9 @@ $app->post('/', function (Request $request, Response $response, array $args) {
         );
 });
 
-$errorMiddleware = $app->addErrorMiddleware(true, true, true, $container->get('logger'));
-$myErrorHandler = new HtmlErrorRenderer($container->get('view'), $app);
-$errorMiddleware->setDefaultErrorHandler($myErrorHandler);
+$displayErrorDetails = (bool)($_ENV['DEBUG'] ?? false);
+$errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, true, true);
+$errorHandler = $errorMiddleware->getDefaultErrorHandler();
+$errorHandler->registerErrorRenderer('text/html', new HtmlErrorRenderer($container->get('view'), $app));
 
 $app->run();
