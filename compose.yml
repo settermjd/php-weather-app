@@ -1,0 +1,9 @@
+version: "3.0"
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    platform: linux/amd64
+    ports:
+      - "80:80"
