@@ -1,0 +1,32 @@
+app = 'php-weather-app'
+primary_region = 'syd'
+
+[build]
+
+[env]
+  PORT = '80'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[services.ports]]
+  port = 443
+  handlers = ["tls", "http"]
+
+[services.ports.http_options.response.headers]
+  Clear-Site-Data = "*"
+  Content-Security-Policy = "default-src 'self'"
+  Referrer-Policy = "strict-origin"
+  Strict-Transport-Security = "max-age=63072000; includeSubDomains;"
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "sameorigin"
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
