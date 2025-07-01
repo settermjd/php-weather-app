@@ -12,9 +12,11 @@
          src="/img/weather-icons/rain.png"
         alt="">
 </div>
-<div class="w-fit m-auto p-4 z-40">
-    <h1 class="text-4xl font-bold mb-2">{% block h1 %}{% endblock %}</h1>
-    {% block content %}{% endblock %}
+<div class="w-fit mx-auto p-4 z-40">
+    <h1 class="text-4xl font-bold mb-2 text-center">{% block h1 %}{% endblock %}</h1>
+    <main class="mb-12 mt-6">
+        {% block content %}{% endblock %}
+    </main>
     <footer class="border-t-2 border-slate-200 drop-shadow-sm text-center mt-5 pt-4">
         <p class="text-slate-500">Built with 🖤 in <a href="https://www.openstreetmap.org/node/245122449#map=13/-24.86543/152.35168" title="Bundaberg Australia on OpenStreetMap" target="_blank">Bundaberg (Australia)</a> by <a href="https://matthewsetter.com" target="_blank">Matthew Setter</a>.</p>
     </footer>
